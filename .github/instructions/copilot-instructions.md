@@ -23,15 +23,19 @@ This is a Node.js TypeScript project using 11ty (Eleventy) as a static site gene
 teridocoaching/
 ├── src/
 │   ├── _data/           # Global data files
-│   ├── _includes/       # Layout templates and partials
+│   ├── _includes/       # Layouts and components
+│   │   ├── base.njk     # Base HTML5 layout
+│   │   ├── page.njk     # Page layout template
+│   │   ├── header.njk   # Header component
+│   │   └── footer.njk   # Footer component
 │   ├── assets/
 │   │   ├── css/         # Stylesheets (BEM methodology)
-│   │   ├── js/          # Client-side JavaScript (ESM modules)
+│   │   │   └── main.css # Main stylesheet with accessibility utilities
 │   │   └── images/      # Static images
-│   ├── pages/           # Content pages
-│   └── index.md         # Homepage
+│   │       └── favicon.ico
+│   └── pages/           # Content pages
 ├── _site/               # Generated site (output directory)
-├── .eleventy.js         # 11ty configuration
+├── eleventy.config.ts   # 11ty configuration (TypeScript)
 ├── tsconfig.json        # TypeScript configuration
 ├── package.json         # Dependencies and scripts
 └── README.md           # Project documentation
