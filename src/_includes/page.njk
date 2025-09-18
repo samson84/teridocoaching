@@ -1,0 +1,17 @@
+---
+layout: base.njk
+---
+<article class="page" role="article">
+  {% if title %}
+    <header class="page__header">
+      <h1 class="page__title" id="page-title">{{ title }}</h1>
+      {% if description %}
+        <p class="page__description">{{ description }}</p>
+      {% endif %}
+    </header>
+  {% endif %}
+  
+  <section class="page__content" role="region" aria-labelledby="page-title">
+    {{ content | safe }}
+  </section>
+</article>

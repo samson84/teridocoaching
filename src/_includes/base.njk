@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang or 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} | {{ site.name }}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Favicon and meta tags -->
+  <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+  
+  <!-- Open Graph meta tags -->
+  <meta property="og:title" content="{{ title }} | {{ site.name }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+</head>
+<body>
+  <!-- Skip to main content link for keyboard navigation -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  {% include "header.njk" %}
+  
+  <main id="main-content" class="main" role="main">
+    {{ content | safe }}
+  </main>
+  
+  {% include "footer.njk" %}
+</body>
+</html>

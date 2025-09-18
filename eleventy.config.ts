@@ -19,11 +19,10 @@ export default function (eleventyConfig: any) {
 
   // Passthrough file copy
   eleventyConfig.addPassthroughCopy("src/assets/images");
-  eleventyConfig.addPassthroughCopy("src/assets/js");
+  eleventyConfig.addPassthroughCopy("src/assets/css");
   
   // Watch targets for development
   eleventyConfig.addWatchTarget("src/assets/css/");
-  eleventyConfig.addWatchTarget("src/assets/js/");
 
   return {
     dir: {
@@ -31,7 +30,7 @@ export default function (eleventyConfig: any) {
       output: "_site",
       includes: "_includes",
       data: "_data",
-      layouts: "_includes/layouts"
+      layouts: "_includes"
     },
     templateFormats: ["html", "njk", "md", "11ty.js", "11ty.ts"],
     markdownTemplateEngine: "njk",
