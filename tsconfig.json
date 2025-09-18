@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "declaration": false,
+    "outDir": "_site",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/components/*": ["src/_includes/components/*"],
+      "@/layouts/*": ["src/_includes/layouts/*"]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "eleventy.config.ts",
+    "config/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "_site"
+  ]
+}

@@ -1,16 +1,27 @@
 {
   "name": "teridocoaching",
   "version": "1.0.0",
-  "main": "index.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx tsx ./node_modules/.bin/eleventy --serve --config=eleventy.config.ts",
+    "build": "npx tsx ./node_modules/.bin/eleventy --config=eleventy.config.ts",
+    "build:watch": "npx tsx ./node_modules/.bin/eleventy --watch --config=eleventy.config.ts",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src/**/*.{js,ts}",
+    "clean": "rm -rf _site"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Node.js TypeScript project using 11ty (Eleventy) as a static site generator",
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.2"
+    "@11ty/eleventy": "^3.1.2",
+    "@types/node": "^24.5.2",
+    "@typescript-eslint/eslint-plugin": "^8.44.0",
+    "@typescript-eslint/parser": "^8.44.0",
+    "eslint": "^9.35.0",
+    "prettier": "^3.6.2",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
   }
 }
