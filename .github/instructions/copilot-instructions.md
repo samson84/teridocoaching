@@ -7,37 +7,70 @@
 
 ## Project Overview
 
-This is a Node.js TypeScript project using 11ty (Eleventy) as a static site generator. The project follows clean coding principles and modern web development practices.
+This is a ### Accessibility Standards
+
+### Requirements
+- WCAG 2.1 AA compliance
+- Semantic HTML structure
+- Proper heading hierarchy
+- Alt text for all images
+- Keyboard navigation support
+- Screen reader compatibility
+
+### Implementation
+- Use semantic HTML5 elements (main, header, footer, nav)
+- Provide focus indicators
+- Ensure sufficient color contrast
+- Skip to main content link included in base.njk
+- ARIA roles where appropriate (role="main")
+- Test with screen readerspt project using 11ty (Eleventy) as a static site generator. The project follows clean coding principles and modern web development practices.
 
 ## Tech Stack
 
-- **Runtime**: Node.js
-- **Language**: TypeScript
-- **Static Site Generator**: 11ty (Eleventy)
+- **Runtime**: Node.js (v24+)
+- **Language**: TypeScript (v5.9+)
+- **Static Site Generator**: 11ty (Eleventy v3.1+)
 - **Module System**: ESM (ECMAScript Modules)
+- **Template Engine**: Nunjucks (.njk)
 - **CSS Methodology**: BEM (Block Element Modifier)
+- **Build Tool**: tsx (TypeScript execution)
+- **Linting**: ESLint with TypeScript support
+- **Formatting**: Prettier
 
 ## Project Structure
 
 ```
 teridocoaching/
 ├── src/
-│   ├── _data/           # Global data files
-│   ├── _includes/       # Layouts and components
-│   │   ├── base.njk     # Base HTML5 layout
+│   ├── _data/           # Global data files (TypeScript and JavaScript)
+│   │   ├── env.js       # Environment variables
+│   │   ├── navigation.ts # Navigation menu data
+│   │   └── site.js      # Site-wide configuration
+│   ├── _includes/       # Layouts and components (Nunjucks)
+│   │   ├── base.njk     # Base HTML5 layout with meta tags
 │   │   ├── page.njk     # Page layout template
-│   │   ├── header.njk   # Header component
+│   │   ├── header.njk   # Header component with navigation
 │   │   └── footer.njk   # Footer component
 │   ├── assets/
 │   │   ├── css/         # Stylesheets (BEM methodology)
-│   │   │   └── main.css # Main stylesheet with accessibility utilities
+│   │   │   ├── main.css # Main stylesheet entry point
+│   │   │   ├── base/    # Base styles (reset, typography, variables)
+│   │   │   ├── components/ # Component-specific styles
+│   │   │   └── layouts/ # Layout-specific styles
 │   │   └── images/      # Static images
 │   │       └── favicon.ico
-│   └── pages/           # Content pages
-├── _site/               # Generated site (output directory)
-├── eleventy.config.ts   # 11ty configuration (TypeScript)
-├── tsconfig.json        # TypeScript configuration
-├── package.json         # Dependencies and scripts
+│   ├── pages/           # Additional content pages
+│   │   └── test.md      # Example page
+│   ├── about.md         # About page content
+│   ├── contact.md       # Contact page content
+│   ├── index.md         # Homepage content
+│   └── services.md      # Services page content
+├── _site/               # Generated site (output directory, git-ignored)
+├── .github/
+│   └── instructions/    # Project documentation
+├── eleventy.config.ts   # 11ty configuration (TypeScript with tsx)
+├── tsconfig.json        # TypeScript configuration with path aliases
+├── package.json         # Dependencies and npm scripts
 └── README.md           # Project documentation
 ```
 
@@ -52,6 +85,14 @@ teridocoaching/
 npm install
 ```
 
+### Available Scripts
+- `npm run dev` - Start development server with hot reload
+- `npm run build` - Build production site
+- `npm run build:watch` - Build with file watching
+- `npm run type-check` - Run TypeScript type checking
+- `npm run lint` - Lint TypeScript files
+- `npm run clean` - Remove _site directory
+
 ## Coding Standards
 
 ### Clean Code Principles
@@ -63,12 +104,15 @@ npm install
 6. **Consistent formatting** - Use Prettier for code formatting
 
 ### TypeScript Guidelines
-- Use strict TypeScript configuration
+- Use strict TypeScript configuration (target: ES2022, module: ESNext)
 - Prefer `const` over `let`, avoid `var`
 - Use explicit return types for functions
 - Leverage TypeScript's type system fully
-- Use interfaces for object shapes
+- Use interfaces for object shapes (e.g., NavigationItem)
 - Prefer union types over enums when appropriate
+- Use path aliases defined in tsconfig.json (@/*, @/components/*, @/layouts/*)
+- Data files can be .ts or .js (prefer .ts for type safety)
+- Export data using default exports for 11ty compatibility
 
 ### CSS/BEM Guidelines
 - Follow BEM naming convention: `block__element--modifier`
@@ -135,23 +179,42 @@ assets/css/
 
 ## 11ty Configuration Guidelines
 
+### Configuration (eleventy.config.ts)
+- Use TypeScript for configuration with tsx execution
+- Supported template formats: html, njk, md, 11ty.js, 11ty.ts, 11ty.tsx
+- Input directory: `src/`
+- Output directory: `_site/`
+- Includes/Layouts directory: `src/_includes/`
+- Data directory: `src/_data/`
+- Passthrough copy for assets (CSS, images)
+- Watch targets configured for CSS hot reload
+
 ### Templates and Layouts
 - Use Nunjucks for templating (`.njk` files)
+- Base layout (`base.njk`) includes:
+  - HTML5 semantic structure
+  - Meta tags and Open Graph tags
+  - Skip to main content link for accessibility
+  - Main content area with role="main"
 - Create reusable layout files in `_includes/`
 - Use data cascade for configuration
-- Leverage 11ty's built-in filters and shortcodes
+- Markdown files use Nunjucks as template engine
 
 ### Data Management
 - Store global data in `_data/` directory
-- Use JavaScript files for dynamic data
-- JSON files for static configuration
-- Environment-specific data handling
+- Use TypeScript (.ts) or JavaScript (.js) files for data
+- Export data using default exports
+- Define interfaces for data structures
+- Current data files:
+  - `navigation.ts` - Navigation menu items
+  - `site.js` - Site configuration
+  - `env.js` - Environment variables
 
-### Build Optimization
-- Optimize images during build process
-- Minify CSS and JavaScript for production
-- Generate responsive image variants
-- Implement proper caching strategies
+### Content Pages
+- Markdown files (.md) in `src/` root for main pages
+- Additional pages in `src/pages/` subdirectory
+- Use frontmatter for page-specific data (title, description, layout)
+- Nunjucks variables available: `{{ site }}`, `{{ page }}`, `{{ content }}`
 
 ## Development Workflow
 
@@ -220,14 +283,20 @@ assets/css/
 ## Deployment
 
 ### Build Process
-1. Run TypeScript compilation
-2. Process CSS with PostCSS
-3. Optimize images
-4. Generate static files with 11ty
-5. Create production bundle
+1. Clean previous build: `npm run clean`
+2. Type check TypeScript: `npm run type-check`
+3. Lint code: `npm run lint`
+4. Build static site: `npm run build`
+   - Executes eleventy.config.ts with tsx
+   - Processes Nunjucks templates
+   - Converts Markdown to HTML
+   - Copies assets to _site/
+5. Output in `_site/` directory ready for deployment
 
 ### Hosting Requirements
 - Static file hosting (Netlify, Vercel, GitHub Pages)
 - HTTPS enabled
 - Custom domain configuration
 - CDN for global distribution
+- Build command: `npm run build`
+- Publish directory: `_site`
