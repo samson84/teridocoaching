@@ -1,0 +1,10 @@
+.main {
+  min-height: calc(100vh - 8rem);
+  padding: var(--space-2xl) var(--space-md);
+}
+
+@media (min-width: 640px) {
+  .main {
+    padding: var(--space-3xl) var(--space-lg);
+  }
+}

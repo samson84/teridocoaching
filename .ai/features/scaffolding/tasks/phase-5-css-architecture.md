@@ -497,6 +497,23 @@ Update `src/assets/css/main.css`:
   border: 0;
 }
 
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: var(--space-sm);
+  background-color: var(--color-text);
+  color: var(--color-background);
+  padding: var(--space-sm) var(--space-md);
+  text-decoration: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  z-index: 1000;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 .container {
   max-width: var(--breakpoint-xl);
   margin: 0 auto;

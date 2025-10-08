@@ -1,0 +1,31 @@
+.footer {
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  margin-top: auto;
+}
+
+.footer__container {
+  max-width: var(--breakpoint-xl);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+}
+
+.footer__content {
+  text-align: center;
+}
+
+.footer__text {
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+.footer__link {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer__link:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}

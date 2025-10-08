@@ -1,50 +1,57 @@
-/* Main stylesheet - will be expanded in Phase 5 */
+/* Base styles */
+@import 'base/reset.css';
+@import 'base/variables.css';
+@import 'base/typography.css';
 
-/* Accessibility utilities */
-.visually-hidden {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
+/* Layout styles */
+@import 'layouts/header.css';
+@import 'layouts/footer.css';
+@import 'layouts/main.css';
+
+/* Component styles */
+@import 'components/navigation.css';
+@import 'components/page.css';
+
+/* Utility classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .skip-link {
   position: absolute;
   top: -40px;
-  left: 6px;
-  background: #000;
-  color: #fff;
-  padding: 8px;
-  z-index: 1000;
+  left: var(--space-sm);
+  background-color: var(--color-text);
+  color: var(--color-background);
+  padding: var(--space-sm) var(--space-md);
   text-decoration: none;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  z-index: 1000;
+  transition: top var(--transition-fast);
 }
 
 .skip-link:focus {
   top: 0;
 }
 
-/* Base styles */
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  line-height: 1.5;
-  margin: 0;
-  padding: 0;
+.container {
+  max-width: var(--breakpoint-xl);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
 }
 
-.main {
-  min-height: 60vh;
-  padding: 2rem;
+.text-center {
+  text-align: center;
 }
 
-/* Focus styles for better keyboard navigation */
-a:focus,
-button:focus {
-  outline: 2px solid #0066cc;
-  outline-offset: 2px;
+.text-muted {
+  color: var(--color-text-muted);
 }
