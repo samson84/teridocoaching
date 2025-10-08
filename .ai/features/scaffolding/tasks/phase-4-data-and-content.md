@@ -59,7 +59,7 @@ Create `src/index.md`:
 
 ```markdown
 ---
-layout: layouts/page.njk
+layout: page.njk
 title: Welcome to TypeScript + Eleventy
 description: A modern static site generator setup with TypeScript support
 ---
@@ -77,19 +77,21 @@ This is your homepage content. The site is built with:
 ## Getting Started
 
 1. Edit this file (`src/index.md`) to customize your homepage
-2. Create new pages in the `src/pages/` directory
+2. Create new pages in the `src/` directory (not `src/pages/` for clean URLs)
 3. Add components to `src/_includes/components/`
 4. Style your site with CSS in `src/assets/css/`
+
+**Note**: Pages in `src/pages/` will generate URLs like `/pages/about/`. For clean URLs like `/about/`, place pages directly in `src/`.
 
 Happy coding! 🚀
 ```
 
 ### 4.4 Create Sample Pages
-Create `src/pages/about.md`:
+Create `src/about.md`:
 
 ```markdown
 ---
-layout: layouts/page.njk
+layout: page.njk
 title: About
 description: Learn more about this TypeScript + Eleventy site
 ---
@@ -123,11 +125,11 @@ This site demonstrates a modern web development setup using:
 - SEO optimization
 ```
 
-Create `src/pages/contact.md`:
+Create `src/contact.md`:
 
 ```markdown
 ---
-layout: layouts/page.njk
+layout: page.njk
 title: Contact
 description: Get in touch with us
 ---
@@ -173,23 +175,42 @@ npx tsx ./node_modules/.bin/eleventy --config=eleventy.config.ts --serve
 
 Visit `http://localhost:8080` to verify:
 - Site renders correctly
-- Navigation shows all menu items
+- Navigation shows all menu items and links work
 - Homepage content displays
-- About and Contact pages accessible
+- About and Contact pages accessible via navigation
+- URLs match navigation paths (e.g., `/about/` not `/pages/about/`)
 
 ## 🔍 Validation Checklist
 - [ ] Site data file (`site.js`) created with configuration
 - [ ] Navigation data file (`navigation.ts`) created with TypeScript types
 - [ ] Environment data file (`env.js`) created
 - [ ] Homepage (`index.md`) created with front matter
-- [ ] About page created in `pages/about.md`
-- [ ] Contact page created in `pages/contact.md`
-- [ ] All pages use correct layout (`layouts/page.njk`)
+- [ ] About page created in `about.md`
+- [ ] Contact page created in `contact.md`
+- [ ] All pages use correct layout (`page.njk`)
 - [ ] Navigation renders correctly in header
 - [ ] Site metadata appears in page titles
 - [ ] Footer shows build time and site name
 - [ ] Development server starts without errors
 - [ ] All pages accessible and render correctly
+
+## 🔧 Troubleshooting
+
+### Layout Not Found Error
+If you see "layout that does not exist" errors:
+- Ensure layout path is `page.njk`, not `layouts/page.njk`
+- Check that `src/_includes/page.njk` exists
+
+### Navigation Links Not Working
+If navigation links lead to 404 pages:
+- Pages in `src/pages/` generate URLs like `/pages/about/`
+- For clean URLs like `/about/`, place pages directly in `src/`
+- Update navigation URLs to match actual generated paths
+
+### Data Files Not Loading
+If TypeScript data files aren't working:
+- Ensure your Eleventy config supports TypeScript data files
+- Check that files export default values: `export default { ... }`
 
 ## 📝 Expected Output
 After completing this phase:
