@@ -36,11 +36,12 @@ Perform comprehensive testing of the navigation menu across different viewports,
 - [ ] No CSS layout issues
 
 #### Interaction Testing
-- [ ] Toggle button responds to click
+- [ ] Checkbox responds to click
+- [ ] Checkbox responds to Space key
 - [ ] Menu state persists during interaction
-- [ ] Escape key closes mobile menu
-- [ ] Outside click closes mobile menu
+- [ ] Menu closes when checkbox unchecked
 - [ ] Multiple rapid clicks handled gracefully
+- [ ] Works with JavaScript disabled
 
 ### Responsive Testing
 
@@ -61,15 +62,17 @@ Perform comprehensive testing of the navigation menu across different viewports,
 ### Accessibility Testing
 
 #### Keyboard Navigation
-- [ ] Tab through all menu items
-- [ ] Enter/Space activates toggle
-- [ ] Escape closes mobile menu
+- [ ] Tab to checkbox toggle
+- [ ] Space toggles checkbox
+- [ ] Tab through menu items when open
 - [ ] Focus visible at all times
 - [ ] Tab order logical
+- [ ] Focus indicator on label/checkbox
 
 #### Screen Reader Testing
 - [ ] Navigation landmark announced
-- [ ] Toggle button state announced
+- [ ] Checkbox state announced (checked/unchecked)
+- [ ] Label text announced
 - [ ] Current page announced
 - [ ] All links announced with purpose
 
@@ -81,9 +84,10 @@ Perform comprehensive testing of the navigation menu across different viewports,
 
 ### Performance Testing
 - [ ] No layout shift (CLS)
-- [ ] Smooth animations
-- [ ] Fast interaction response
-- [ ] JavaScript loads without blocking
+- [ ] Smooth CSS transitions
+- [ ] Instant interaction response (no JS delay)
+- [ ] No JavaScript loading overhead
+- [ ] Works immediately on page load
 
 ## Test Commands
 ```bash
@@ -99,12 +103,12 @@ npm run lint
 ```
 
 ## Issues to Watch For
-- Focus traps
+- Focus visibility on checkbox/label
 - Scroll issues when menu opens
 - Z-index conflicts
-- Animation jank
-- Memory leaks from event listeners
-- ARIA attribute sync issues
+- CSS transition performance
+- Label click area sufficient
+- Checkbox accidentally visible
 
 ## Acceptance Criteria
 - [ ] All visual tests pass

@@ -11,35 +11,42 @@ Implement a responsive navigation menu in the header based on navigation data fr
 
 ## Required Changes
 
-### 1. Add Mobile Hamburger Toggle
-The navigation CSS includes styles for a hamburger menu toggle (`.navigation__toggle`, `.navigation__hamburger`), but the HTML structure is missing from the header component.
+### 1. Add CSS-Only Mobile Hamburger Toggle
+The navigation CSS includes styles for a hamburger menu toggle, but needs modification to work without JavaScript using the checkbox hack pattern.
 
-**Required:** Add hamburger button markup to `header.njk` for mobile navigation control.
+**Required:** 
+- Add hidden checkbox input to `header.njk` for toggle state
+- Add label element styled as hamburger button
+- Update CSS to use `:checked` pseudo-class for menu visibility
 
-### 2. Add JavaScript for Mobile Menu Interaction
-The CSS has `.navigation--open` state for showing mobile menu, but there's no JavaScript to toggle this state.
+**Benefits of CSS-Only Approach:**
+- No JavaScript dependencies
+- Works even if JavaScript is disabled
+- Simpler implementation
+- Better for progressive enhancement
+- No client-side event listeners or state management
 
-**Required:** Create JavaScript module to handle:
-- Hamburger button click to toggle menu visibility
-- Close menu when clicking outside
-- Close menu when pressing Escape key
-- Proper ARIA attributes for accessibility
-
-### 3. Verify Navigation Data Flow
+### 2. Verify Navigation Data Flow
 The navigation data from `navigation.ts` should be properly passed to the header template.
 
 **Required:** Verify that the navigation data is accessible in the header template context.
 
-### 4. Enhance Accessibility
+### 3. Enhance Accessibility
 Ensure the navigation meets WCAG 2.1 AA standards as per project requirements.
 
 **Required:**
-- ARIA attributes for mobile menu (aria-expanded, aria-controls, aria-label)
-- Keyboard navigation support
-- Focus management when opening/closing mobile menu
-- Screen reader announcements
+- ARIA label on checkbox input for screen readers
+- Keyboard navigation support (checkboxes are keyboard accessible by default)
+- Proper semantic HTML structure
+- Focus indicators on interactive elements
+- Screen reader compatible labels
 
-### 5. Visual Verification
+**Note:** CSS-only approach has inherent accessibility benefits:
+- Checkbox is natively keyboard accessible (Space to toggle)
+- Focus management handled by browser
+- No ARIA state management needed
+
+### 4. Visual Verification
 Test the implementation across different viewport sizes.
 
 **Required:**
@@ -50,15 +57,18 @@ Test the implementation across different viewport sizes.
 
 ## Technical Considerations
 
-### TypeScript/JavaScript
-- Create ESM module for navigation interactivity
-- Follow project's clean code principles (no comments, self-documenting code)
-- Type-safe implementation
+### HTML Structure (Checkbox Hack)
+- Hidden checkbox input controls menu state
+- Label element acts as the hamburger button
+- CSS targets checkbox `:checked` state
+- No JavaScript required
 
 ### CSS
 - BEM methodology already in use
 - Responsive breakpoint at 768px
 - CSS custom properties for theming
+- Use `:checked` pseudo-class for toggle state
+- Adjacent sibling combinator (`+`) or general sibling (`~`) to target menu
 
 ### Accessibility
 - Semantic HTML5 elements (`<nav>`, `<ul>`, `<li>`)
@@ -72,10 +82,11 @@ Test the implementation across different viewport sizes.
 2. ✓ Mobile view shows hamburger menu
 3. ✓ Desktop view shows horizontal navigation
 4. ✓ Current page is highlighted
-5. ✓ Menu is keyboard accessible
+5. ✓ Menu is keyboard accessible (Space/Enter toggles)
 6. ✓ Menu works with screen readers
-7. ✓ JavaScript is clean and follows project standards
-8. ✓ No console errors or warnings
+7. ✓ No JavaScript dependencies
+8. ✓ Works with JavaScript disabled
+9. ✓ Clean CSS-only implementation
 
 ## Dependencies
 - Existing navigation data in `src/_data/navigation.ts`
@@ -84,10 +95,10 @@ Test the implementation across different viewport sizes.
 - 11ty build system configuration
 
 ## Timeline Estimate
-- Task 1: Add mobile toggle HTML - 5 minutes
-- Task 2: Create navigation JavaScript - 15 minutes
+- Task 1: Add CSS-only mobile toggle HTML - 10 minutes
+- Task 2: Update CSS for checkbox pattern - 10 minutes
 - Task 3: Verify data flow - 5 minutes
-- Task 4: Enhance accessibility - 10 minutes
+- Task 4: Enhance accessibility - 5 minutes
 - Task 5: Test and verify - 10 minutes
 
-**Total: ~45 minutes**
+**Total: ~40 minutes** (Faster than JavaScript approach!)

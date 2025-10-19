@@ -1,43 +1,47 @@
-# Task 01: Add Mobile Hamburger Toggle HTML
+# Task 01: Add CSS-Only Mobile Hamburger Toggle HTML
 
 ## Objective
-Add the hamburger menu button markup to the header template for mobile navigation control.
+Add the hamburger menu toggle markup to the header template using the CSS-only checkbox hack pattern (no JavaScript required).
 
 ## Files to Modify
 - `src/_includes/header.njk`
 
 ## Implementation Details
 
-### Add Toggle Button
-Insert hamburger button before the `<nav>` element inside the header container:
+### Add Checkbox and Label
+Insert checkbox and label before the `<nav>` element inside the header container:
 
 ```html
-<button class="navigation__toggle" 
-        aria-expanded="false" 
-        aria-controls="navigation-menu" 
-        aria-label="Toggle navigation menu">
+<input type="checkbox" 
+       id="navigation-toggle" 
+       class="navigation__checkbox"
+       aria-label="Toggle navigation menu">
+<label for="navigation-toggle" 
+       class="navigation__toggle">
   <span class="navigation__hamburger"></span>
-</button>
+  <span class="visually-hidden">Toggle navigation menu</span>
+</label>
 ```
 
-### Update Navigation Element
-Add `id` to the navigation element for ARIA relationship:
+### Structure Order
+The order should be:
+1. Hidden checkbox input
+2. Label (styled as hamburger button)
+3. Navigation element
 
-```html
-<nav class="navigation" 
-     id="navigation-menu" 
-     role="navigation" 
-     aria-label="Main navigation">
-```
+This allows CSS to target the nav element using sibling selectors when checkbox is checked.
 
 ## Acceptance Criteria
-- [ ] Hamburger button added to header
-- [ ] Button has proper ARIA attributes
-- [ ] Navigation has matching `id` attribute
-- [ ] Button includes screen reader label
+- [ ] Checkbox input added with unique ID
+- [ ] Label linked to checkbox via `for` attribute
+- [ ] Label includes screen reader text
+- [ ] Checkbox has accessible label
 - [ ] HTML validates correctly
+- [ ] Elements in correct order for CSS targeting
 
 ## Notes
-- The CSS for `.navigation__toggle` and `.navigation__hamburger` already exists
-- Button should be inside `.header__container` but before `<nav>`
+- Checkbox will be visually hidden with CSS but remain keyboard accessible
+- Label acts as the clickable hamburger button
+- No JavaScript needed - checkbox `:checked` state controls menu visibility
 - Follow BEM naming convention
+- The `visually-hidden` class should hide text but keep it accessible to screen readers
