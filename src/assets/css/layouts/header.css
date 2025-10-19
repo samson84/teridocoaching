@@ -1,9 +1,16 @@
 .header {
-  background-color: var(--color-background);
-  border-bottom: 1px solid var(--color-border);
+  background: var(--gradient-soft);
+  border-bottom: 2px solid var(--color-lavender);
   position: sticky;
   top: 0;
   z-index: 100;
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base);
+}
+
+.header:hover {
+  box-shadow: var(--shadow-md);
 }
 
 .header__container {
@@ -29,11 +36,20 @@
 .header__logo {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
-  color: var(--color-text);
+  color: var(--color-primary-dark);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transition: all var(--transition-base);
+  position: relative;
 }
 
 .header__logo:hover {
   color: var(--color-primary);
+  transform: translateY(-1px);
+  text-shadow: 0 2px 8px rgba(122, 154, 163, 0.3);
+}
+
+.header__logo:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
 }

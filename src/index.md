@@ -4,10 +4,6 @@ title: Welcome to Terido Coaching
 description: Professional coaching services for personal and business development
 ---
 
-# Welcome to Terido Coaching
-
-Unlock your potential with professional coaching services designed to accelerate personal and business growth.
-
 ## Our Approach
 
 At Terido Coaching, we combine proven methodologies with personalized strategies to help you achieve:
@@ -27,5 +23,11 @@ Our coaching methodology integrates:
 - Measurable results and progress tracking
 
 Ready to transform your life and business? Let's start your journey today.
+
+> The ship to success is built in the harbor of preparation.
+
+`Let's set sail together!`
+
+*The sailor knows the waters best.*
 
 [Get Started](/contact/) or [Learn More About Our Services](/services/)

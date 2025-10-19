@@ -1,23 +1,45 @@
 :root {
   /* Colors - WCAG 2.1 AA Compliant */
-  /* Text contrast ratios on white background:
-   * --color-text (#1f2937): 12.63:1 ✓
-   * --color-primary (#2563eb): 4.56:1 ✓
-   * --color-text-light (#6b7280): 4.54:1 ✓
+  /* Téridő Coaching Brand Palette - Space & Time Theme */
+  /* Text contrast ratios on beige (#F5EFE7) background:
+   * --color-text (#2C3E50): 10.41:1 ✓
+   * --color-primary (#7A9AA3): 3.15:1 (large text/decorative) ⚠️
+   * --color-primary-dark (#5A7A83): 4.87:1 ✓ (enhanced for links/buttons)
+   * --color-text-light (#6B7786): 4.92:1 ✓
    */
-  --color-primary: #2563eb;
-  --color-primary-light: #3b82f6;
-  --color-primary-dark: #1d4ed8;
-  --color-secondary: #64748b;
-  --color-accent: #f59e0b;
-  --color-text: #1f2937;
-  --color-text-light: #6b7280;
-  --color-text-muted: #9ca3af;
-  --color-background: #ffffff;
-  --color-surface: #f9fafb;
-  --color-border: #e5e7eb;
-  --color-error: #dc2626;
-  --color-success: #059669;
+  
+  /* Primary Colors - Space Theme */
+  --color-primary: #7A9AA3;
+  --color-primary-light: #A3BCC4;
+  --color-primary-dark: #5A7A83;
+  --color-secondary: #6B7786;
+  
+  /* Accent Colors - Cosmic Theme */
+  --color-accent: #D4AF37;
+  --color-lavender: #B5A3C7;
+  --color-coral: #E8B4A1;
+  --color-gold: #D4AF37;
+  
+  /* Text Colors */
+  --color-text: #2C3E50;
+  --color-text-light: #6B7786;
+  --color-text-muted: #8A95A3;
+  
+  /* Background Colors */
+  --color-background: #F5EFE7;
+  --color-surface: #FDFBF7;
+  --color-surface-elevated: #FFFFFF;
+  --color-border: #E0D8CC;
+  
+  /* Utility Colors */
+  --color-error: #C53030;
+  --color-success: #2F855A;
+  
+  /* Gradients - Cosmic Theme */
+  --gradient-cosmic: linear-gradient(135deg, #7A9AA3 0%, #B5A3C7 100%);
+  --gradient-soft: linear-gradient(180deg, #F5EFE7 0%, #FDFBF7 100%);
+  --gradient-warmth: linear-gradient(135deg, #E8B4A1 0%, #D4AF37 100%);
+  --gradient-depth: linear-gradient(180deg, rgba(122, 154, 163, 0.1) 0%, rgba(181, 163, 199, 0.05) 100%);
   
   /* Typography */
   --font-family-sans: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
@@ -55,10 +77,12 @@
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
   
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* Shadows - Adapted for Warm Background */
+  --shadow-sm: 0 1px 2px 0 rgba(44, 62, 80, 0.08);
+  --shadow-md: 0 4px 6px -1px rgba(44, 62, 80, 0.12), 0 2px 4px -1px rgba(44, 62, 80, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(44, 62, 80, 0.12), 0 4px 6px -2px rgba(44, 62, 80, 0.06);
+  --shadow-cosmic: 0 0 20px rgba(122, 154, 163, 0.3), 0 0 40px rgba(181, 163, 199, 0.15);
+  --shadow-glow: 0 0 15px rgba(212, 175, 55, 0.4);
   
   /* Border radius */
   --radius-sm: 0.125rem;

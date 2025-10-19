@@ -1,10 +1,43 @@
 .main {
   min-height: calc(100vh - 8rem);
   padding: var(--space-2xl) var(--space-md);
+  background: var(--gradient-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: var(--gradient-depth);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.main > * {
+  position: relative;
+  z-index: 1;
 }
 
 @media (min-width: 640px) {
   .main {
     padding: var(--space-3xl) var(--space-lg);
+  }
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding: var(--space-3xl) var(--space-2xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .main {
+    padding: var(--space-3xl) var(--space-3xl);
   }
 }

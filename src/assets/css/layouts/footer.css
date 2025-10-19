@@ -1,13 +1,36 @@
 .footer {
-  background-color: var(--color-surface);
-  border-top: 1px solid var(--color-border);
+  /* Darker beige background for visual grounding */
+  background: linear-gradient(180deg, var(--color-background) 0%, #EDE5D8 100%);
+  /* Subtle cosmic top border with gradient */
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(90deg, 
+    var(--color-lavender) 0%, 
+    var(--color-primary) 50%, 
+    var(--color-coral) 100%
+  ) 1;
   margin-top: auto;
+  position: relative;
+  /* Add subtle shadow for depth */
+  box-shadow: 0 -4px 12px rgba(122, 154, 163, 0.08);
+}
+
+/* Optional: Add small star decoration */
+.footer::before {
+  content: '✦';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-gold);
+  font-size: var(--font-size-lg);
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  opacity: 0.8;
 }
 
 .footer__container {
   max-width: var(--breakpoint-xl);
   margin: 0 auto;
-  padding: var(--space-xl) var(--space-md);
+  padding: var(--space-2xl) var(--space-md) var(--space-xl);
 }
 
 .footer__content {
@@ -15,17 +38,84 @@
 }
 
 .footer__text {
-  color: var(--color-text-light);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
   margin: 0;
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .footer__text {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-md);
+  }
+  
+  .footer__credits::before {
+    content: '•';
+    margin-right: var(--space-md);
+    color: var(--color-primary);
+  }
+}
+
+.footer__copyright {
+  color: var(--color-text-light);
+  font-weight: var(--font-weight-medium);
+}
+
+.footer__credits {
+  color: var(--color-text-light);
 }
 
 .footer__link {
-  color: var(--color-primary);
+  color: var(--color-primary-dark);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  font-weight: var(--font-weight-semibold);
+  transition: all var(--transition-fast);
+  position: relative;
+  padding: var(--space-xs) 0;
+}
+
+/* Underline effect on hover */
+.footer__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-cosmic);
+  transition: width var(--transition-base);
 }
 
 .footer__link:hover {
-  color: var(--color-primary-dark);
-  text-decoration: underline;
+  color: var(--color-primary);
+  text-shadow: 0 0 8px rgba(122, 154, 163, 0.3);
+}
+
+.footer__link:hover::after {
+  width: 100%;
+}
+
+.footer__link:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+/* Ensure visually-hidden content is accessible */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
