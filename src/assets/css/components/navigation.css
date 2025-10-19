@@ -2,6 +2,13 @@
   position: relative;
 }
 
+/* Hide checkbox visually but keep it accessible for keyboard navigation */
+.navigation__checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .navigation__toggle {
   display: flex;
   flex-direction: column;
@@ -41,6 +48,40 @@
   bottom: -6px;
 }
 
+/* Animate hamburger to X when menu is open */
+.navigation__checkbox:checked ~ .navigation__toggle .navigation__hamburger {
+  background-color: transparent;
+}
+
+.navigation__checkbox:checked ~ .navigation__toggle .navigation__hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.navigation__checkbox:checked ~ .navigation__toggle .navigation__hamburger::after {
+  transform: rotate(-45deg);
+  bottom: 0;
+}
+
+/* Focus indicator for keyboard navigation */
+.navigation__checkbox:focus ~ .navigation__toggle {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Focus indicator for navigation links */
+.navigation__link:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Ensure focus is visible and consistent */
+.navigation__link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 .navigation__list {
   display: none;
   position: absolute;
@@ -52,11 +93,13 @@
   box-shadow: var(--shadow-lg);
   padding: var(--space-sm);
   margin: 0;
+  margin-top: var(--space-lg); /* Add spacing below hamburger icon */
   list-style: none;
   min-width: 200px;
 }
 
-.navigation--open .navigation__list {
+/* Show menu when checkbox is checked */
+.navigation__checkbox:checked ~ .navigation .navigation__list {
   display: block;
 }
 
@@ -78,7 +121,14 @@
   color: var(--color-primary);
 }
 
+.navigation__link--current {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
 @media (min-width: 768px) {
+  /* Hide checkbox and toggle on desktop */
+  .navigation__checkbox,
   .navigation__toggle {
     display: none;
   }

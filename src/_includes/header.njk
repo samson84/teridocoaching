@@ -6,26 +6,38 @@
       </a>
     </div>
     
-    <nav class="navigation" role="navigation" aria-label="Main navigation">
-      {% if navigation and navigation.length %}
-        <ul class="navigation__list" role="list">
-          {% for item in navigation %}
-            <li class="navigation__item">
-              <a href="{{ item.url }}" 
-                 class="navigation__link{% if item.url == page.url %} navigation__link--current{% endif %}"
-                 {% if item.url == page.url %}aria-current="page"{% endif %}
-                 {% if item.external %}target="_blank" rel="noopener noreferrer" aria-describedby="external-link-desc"{% endif %}>
-                {{ item.title }}
-                {% if item.external %}
-                  <span class="visually-hidden"> (opens in new window)</span>
-                {% endif %}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-        <!-- Hidden description for screen readers -->
-        <div id="external-link-desc" class="visually-hidden">External links open in a new window</div>
-      {% endif %}
-    </nav>
+    <div class="header__nav-wrapper">
+      <input type="checkbox" 
+             id="navigation-toggle" 
+             class="navigation__checkbox"
+             aria-label="Toggle navigation menu">
+      <label for="navigation-toggle" 
+             class="navigation__toggle">
+        <span class="navigation__hamburger"></span>
+        <span class="visually-hidden">Toggle navigation menu</span>
+      </label>
+      
+      <nav class="navigation" role="navigation" aria-label="Main navigation">
+        {% if navigation and navigation.length %}
+          <ul class="navigation__list" role="list">
+            {% for item in navigation %}
+              <li class="navigation__item">
+                <a href="{{ item.url }}" 
+                   class="navigation__link{% if item.url == page.url %} navigation__link--current{% endif %}"
+                   {% if item.url == page.url %}aria-current="page"{% endif %}
+                   {% if item.external %}target="_blank" rel="noopener noreferrer" aria-describedby="external-link-desc"{% endif %}>
+                  {{ item.title }}
+                  {% if item.external %}
+                    <span class="visually-hidden"> (opens in new window)</span>
+                  {% endif %}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+          <!-- Hidden description for screen readers -->
+          <div id="external-link-desc" class="visually-hidden">External links open in a new window</div>
+        {% endif %}
+      </nav>
+    </div>
   </div>
 </header>

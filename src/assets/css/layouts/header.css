@@ -20,6 +20,12 @@
   flex-shrink: 0;
 }
 
+.header__nav-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
 .header__logo {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);

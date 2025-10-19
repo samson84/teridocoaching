@@ -1,10 +1,4 @@
-interface NavigationItem {
-  title: string;
-  url: string;
-  external?: boolean;
-}
-
-const navigation: NavigationItem[] = [
+export default [
   {
     title: 'Home',
     url: '/'
@@ -22,5 +16,3 @@ const navigation: NavigationItem[] = [
     url: '/contact/'
   }
 ];
-
-export default navigation;
