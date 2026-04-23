@@ -2,6 +2,9 @@
   "name": "teridocoaching",
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "scripts": {
     "dev": "concurrently \"npm run eleventy:dev\" \"npm run tailwind:watch\"",
     "build": "npm run tailwind:build && npm run eleventy:build",
@@ -12,7 +15,8 @@
     "build:watch": "npx tsx ./node_modules/.bin/eleventy --watch --config=eleventy.config.ts",
     "type-check": "tsc --noEmit",
     "lint": "eslint src/**/*.{js,ts}",
-    "clean": "rm -rf _site"
+    "clean": "rm -rf _site",
+    "netlify:deploy": "npx -y netlify-cli deploy --prod"
   },
   "keywords": [],
   "author": "",
