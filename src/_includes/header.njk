@@ -1,39 +1,48 @@
-<header role="banner">
-  <div>
-    <div>
-      <a href="/" aria-label="Home - {{ site.name }}">
-        {{ site.name }}
+<header role="banner" class="site-header">
+  <div class="header-container">
+    <div class="header-surface motion-fade-in">
+      <a href="/" aria-label="Home - {{ site.name }}" class="brand-link">
+        <span class="brand-mark">Space/Time</span>
+        <span class="brand-name">{{ site.name }}</span>
       </a>
-    </div>
-    
-    <div>
-      <input type="checkbox" 
-             id="navigation-toggle" 
-             aria-label="Toggle navigation menu">
-      <label for="navigation-toggle">
-        <span></span>
-        <span>Toggle navigation menu</span>
-      </label>
-      
-      <nav role="navigation" aria-label="Main navigation">
-        {% if navigation and navigation.length %}
-          <ul role="list">
-            {% for item in navigation %}
-              <li>
-                <a href="{{ item.url }}" 
-                   {% if item.url == page.url %}aria-current="page"{% endif %}
-                   {% if item.external %}target="_blank" rel="noopener noreferrer" aria-describedby="external-link-desc"{% endif %}>
-                  {{ item.title }}
-                  {% if item.external %}
-                    <span> (opens in new window)</span>
-                  {% endif %}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-          <div id="external-link-desc">External links open in a new window</div>
-        {% endif %}
-      </nav>
+
+      <div class="nav-shell">
+        <input
+          type="checkbox"
+          id="navigation-toggle"
+          aria-label="Toggle navigation menu"
+          class="sr-only"
+        >
+        <label for="navigation-toggle" class="menu-toggle">
+          <span class="menu-toggle-bar"></span>
+          <span class="menu-toggle-bar"></span>
+          <span class="menu-toggle-bar"></span>
+          <span class="sr-only">Toggle navigation menu</span>
+        </label>
+
+        <nav role="navigation" aria-label="Main navigation" class="site-nav">
+          {% if navigation and navigation.length %}
+            <ul role="list" class="nav-list">
+              {% for item in navigation %}
+                <li>
+                  <a
+                    href="{{ item.url }}"
+                    class="nav-link"
+                    {% if item.url == page.url %}aria-current="page"{% endif %}
+                    {% if item.external %}target="_blank" rel="noopener noreferrer" aria-describedby="header-external-link-desc"{% endif %}
+                  >
+                    {{ item.title }}
+                    {% if item.external %}
+                      <span class="sr-only"> (opens in new window)</span>
+                    {% endif %}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+            <span id="header-external-link-desc" class="sr-only">External links open in a new window</span>
+          {% endif %}
+        </nav>
+      </div>
     </div>
   </div>
 </header>

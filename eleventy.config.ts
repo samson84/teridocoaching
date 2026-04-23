@@ -1,5 +1,3 @@
-import "tsx/esm";
-import path from "node:path";
 
 export default function (eleventyConfig: any) {
   // TypeScript template support
@@ -18,6 +16,7 @@ export default function (eleventyConfig: any) {
   ]);
 
   eleventyConfig.addPassthroughCopy("src/assets/images");
+  eleventyConfig.addPassthroughCopy("src/assets/fonts");
 
   return {
     dir: {

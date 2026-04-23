@@ -1,17 +1,17 @@
 ---
 layout: base.njk
 ---
-<article role="article">
+<article role="article" class="page-shell motion-fade-in">
   {% if title %}
-    <header>
-      <h1 id="page-title">{{ title }}</h1>
+    <header class="page-header">
+      <h1 id="page-title" class="page-title">{{ title }}</h1>
       {% if description %}
-        <p>{{ description }}</p>
+        <p class="page-description">{{ description }}</p>
       {% endif %}
     </header>
   {% endif %}
-  
-  <section role="region" aria-labelledby="page-title">
+
+  <section role="region" {% if title %}aria-labelledby="page-title"{% else %}aria-label="Page content"{% endif %} class="prose-flow">
     {{ content | safe }}
   </section>
 </article>
