@@ -52,21 +52,10 @@ src/_includes/
 
 ### Assets Directory (`src/assets/`)
 
-#### CSS Structure (BEM Methodology)
+#### CSS Structure (Tailwind CSS v4)
 ```
 src/assets/css/
-├── main.css                    # Main stylesheet (imports all others)
-├── base/
-│   ├── reset.css              # CSS reset
-│   ├── typography.css         # Typography styles
-│   └── variables.css          # CSS custom properties
-├── components/
-│   ├── navigation.css         # Navigation component
-│   └── page.css               # Page component
-└── layouts/
-    ├── footer.css             # Footer layout
-    ├── header.css             # Header layout
-    └── main.css               # Main layout
+└── main.css                    # Tailwind entry point (@import "tailwindcss" + @theme + @layer)
 ```
 
 #### Images
@@ -89,11 +78,11 @@ The `_site/` directory contains the generated static site and mirrors the source
 
 1. **Source-Output Separation**: All source files in `src/`, all generated files in `_site/`
 2. **Content Organization**: Root-level markdown files for main pages, `pages/` for additional pages
-3. **Component-Based CSS**: Organized by base, components, and layouts following BEM
+3. **Tailwind CSS**: Single `main.css` entry point, built by `@tailwindcss/cli` to `_site/`
 4. **Template Hierarchy**: `base.njk` → `page.njk` → content markdown files
 5. **Data Cascade**: Global data in `_data/`, available to all templates
 6. **TypeScript Configuration**: Mixed `.ts` and `.js` files, TypeScript for type-safe data
-7. **Asset Pipeline**: CSS organized modularly, imported through `main.css`
+7. **Asset Pipeline**: Tailwind CLI outputs `_site/assets/css/main.css`; images via Eleventy passthrough
 
 ## File Naming Conventions
 
@@ -106,6 +95,6 @@ The `_site/` directory contains the generated static site and mirrors the source
 ## Import/Dependency Flow
 
 1. **HTML Templates**: `base.njk` (root) ← `page.njk` (wrapper) ← `*.md` (content)
-2. **CSS**: `main.css` imports from `base/`, `components/`, `layouts/`
+2. **CSS**: `main.css` → `@tailwindcss/cli` → `_site/assets/css/main.css`
 3. **Data**: Files in `_data/` automatically available as global data
 4. **Components**: `header.njk` and `footer.njk` included in layout templates

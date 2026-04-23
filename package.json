@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npx tsx ./node_modules/.bin/eleventy --serve --config=eleventy.config.ts",
-    "build": "npx tsx ./node_modules/.bin/eleventy --config=eleventy.config.ts",
+    "dev": "concurrently \"npm run eleventy:dev\" \"npm run tailwind:watch\"",
+    "build": "npm run tailwind:build && npm run eleventy:build",
+    "eleventy:dev": "npx tsx ./node_modules/.bin/eleventy --serve --config=eleventy.config.ts",
+    "eleventy:build": "npx tsx ./node_modules/.bin/eleventy --config=eleventy.config.ts",
+    "tailwind:watch": "npx @tailwindcss/cli -i ./src/assets/css/main.css -o ./_site/assets/css/main.css --watch",
+    "tailwind:build": "npx @tailwindcss/cli -i ./src/assets/css/main.css -o ./_site/assets/css/main.css --minify",
     "build:watch": "npx tsx ./node_modules/.bin/eleventy --watch --config=eleventy.config.ts",
     "type-check": "tsc --noEmit",
     "lint": "eslint src/**/*.{js,ts}",
@@ -16,11 +20,14 @@
   "description": "Node.js TypeScript project using 11ty (Eleventy) as a static site generator",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
+    "@tailwindcss/cli": "^4.2.4",
     "@types/node": "^24.5.2",
     "@typescript-eslint/eslint-plugin": "^8.44.0",
     "@typescript-eslint/parser": "^8.44.0",
+    "concurrently": "^9.2.1",
     "eslint": "^9.35.0",
     "prettier": "^3.6.2",
+    "tailwindcss": "^4.2.4",
     "tsx": "^4.20.5",
     "typescript": "^5.9.2"
   }

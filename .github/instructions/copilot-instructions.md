@@ -32,7 +32,7 @@ This is a ### Accessibility Standards
 - **Static Site Generator**: 11ty (Eleventy v3.1+)
 - **Module System**: ESM (ECMAScript Modules)
 - **Template Engine**: Nunjucks (.njk)
-- **CSS Methodology**: BEM (Block Element Modifier)
+- **CSS Framework**: Tailwind CSS v4 (utility-first, CSS-based config)
 - **Build Tool**: tsx (TypeScript execution)
 - **Linting**: ESLint with TypeScript support
 - **Formatting**: Prettier
@@ -52,11 +52,8 @@ teridocoaching/
 │   │   ├── header.njk   # Header component with navigation
 │   │   └── footer.njk   # Footer component
 │   ├── assets/
-│   │   ├── css/         # Stylesheets (BEM methodology)
-│   │   │   ├── main.css # Main stylesheet entry point
-│   │   │   ├── base/    # Base styles (reset, typography, variables)
-│   │   │   ├── components/ # Component-specific styles
-│   │   │   └── layouts/ # Layout-specific styles
+│   │   ├── css/
+│   │   │   └── main.css # Tailwind CSS entry point (@import "tailwindcss")
 │   │   └── images/      # Static images
 │   │       └── favicon.ico
 │   ├── pages/           # Additional content pages
@@ -86,9 +83,13 @@ npm install
 ```
 
 ### Available Scripts
-- `npm run dev` - Start development server with hot reload
-- `npm run build` - Build production site
-- `npm run build:watch` - Build with file watching
+- `npm run dev` - Start Eleventy dev server + Tailwind watch (concurrent)
+- `npm run build` - Build Tailwind CSS (minified) then Eleventy site
+- `npm run eleventy:dev` - Eleventy dev server only
+- `npm run eleventy:build` - Eleventy production build only
+- `npm run tailwind:watch` - Tailwind CLI in watch mode only
+- `npm run tailwind:build` - Tailwind CLI production build (minified) only
+- `npm run build:watch` - Eleventy build with file watching
 - `npm run type-check` - Run TypeScript type checking
 - `npm run lint` - Lint TypeScript files
 - `npm run clean` - Remove _site directory
@@ -114,12 +115,11 @@ npm install
 - Data files can be .ts or .js (prefer .ts for type safety)
 - Export data using default exports for 11ty compatibility
 
-### CSS/BEM Guidelines
-- Follow BEM naming convention: `block__element--modifier`
-- Think in terms of UI components/blocks
-- Use CSS custom properties for theming
-- Mobile-first responsive design
-- Avoid deep nesting (max 3 levels)
+### Tailwind CSS Guidelines
+- Use Tailwind v4 utility classes directly in HTML/Nunjucks templates
+- Use `@layer components` in `src/assets/css/main.css` for reusable component styles
+- Use `@theme` in `src/assets/css/main.css` for design tokens (colors, fonts, spacing)
+- Mobile-first responsive design using Tailwind breakpoint prefixes (`sm:`, `md:`, `lg:`)
 - Use semantic HTML5 elements
 
 ### JavaScript/Module System
@@ -145,36 +145,28 @@ npm install
 
 ## CSS Architecture
 
-### BEM Methodology
-```css
-/* Block */
-.card { }
-
-/* Element */
-.card__title { }
-.card__content { }
-
-/* Modifier */
-.card--featured { }
-.card__title--large { }
-```
+### Tailwind v4 Setup
+- Entry point: `src/assets/css/main.css`
+- Built by `@tailwindcss/cli` directly to `_site/assets/css/main.css`
+- Not processed by Eleventy (no passthrough copy)
 
 ### File Organization
 ```
-assets/css/
-├── base/
-│   ├── reset.css
-│   ├── typography.css
-│   └── variables.css
-├── components/
-│   ├── button.css
-│   ├── card.css
-│   └── navigation.css
-├── layouts/
-│   ├── header.css
-│   ├── footer.css
-│   └── main.css
-└── main.css           # Import all other files
+src/assets/css/
+└── main.css   # @import "tailwindcss" + @theme tokens + @layer components
+```
+
+### Customization
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1a1a2e;
+}
+
+@layer components {
+  .btn { @apply px-4 py-2 rounded; }
+}
 ```
 
 ## 11ty Configuration Guidelines
@@ -186,8 +178,7 @@ assets/css/
 - Output directory: `_site/`
 - Includes/Layouts directory: `src/_includes/`
 - Data directory: `src/_data/`
-- Passthrough copy for assets (CSS, images)
-- Watch targets configured for CSS hot reload
+- Passthrough copy for images only (CSS handled by Tailwind CLI)
 
 ### Templates and Layouts
 - Use Nunjucks for templating (`.njk` files)
@@ -219,16 +210,14 @@ assets/css/
 ## Development Workflow
 
 ### Feature Development
-1. Create feature branch from main
-2. Write TypeScript with proper typing
-3. Follow BEM methodology for CSS
-4. Test locally with dev server
-5. Build and verify production output
-6. Create pull request with clear description
+1. Write TypeScript with proper typing
+2. Test locally with dev server
+3. Build and verify production output
+4. Create pull request with clear description
 
 ### Code Quality Checks
 - TypeScript compilation without errors
-- CSS follows BEM conventions
+- Tailwind classes used correctly
 - ESM imports/exports used correctly
 - No console.log statements in production code
 - Responsive design tested on multiple devices
@@ -287,10 +276,11 @@ assets/css/
 2. Type check TypeScript: `npm run type-check`
 3. Lint code: `npm run lint`
 4. Build static site: `npm run build`
+   - Runs `@tailwindcss/cli` → writes `_site/assets/css/main.css` (minified)
    - Executes eleventy.config.ts with tsx
    - Processes Nunjucks templates
    - Converts Markdown to HTML
-   - Copies assets to _site/
+   - Copies images to _site/
 5. Output in `_site/` directory ready for deployment
 
 ### Hosting Requirements

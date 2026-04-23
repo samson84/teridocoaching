@@ -17,12 +17,7 @@ export default function (eleventyConfig: any) {
     "11ty.tsx"
   ]);
 
-  // Passthrough file copy
   eleventyConfig.addPassthroughCopy("src/assets/images");
-  eleventyConfig.addPassthroughCopy("src/assets/css");
-  
-  // Watch targets for development
-  eleventyConfig.addWatchTarget("src/assets/css/");
 
   return {
     dir: {
